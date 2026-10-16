@@ -1,0 +1,52 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions: {}
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Package and publish
+    runs-on: macos-15
+    permissions:
+      contents: write # creates the GitHub release and uploads its assets
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Test
+        run: Scripts/test.sh
+
+      - name: Package
+        run: Scripts/package.sh
+
+      - name: Verify signature and archs
+        run: |
+          codesign --verify --deep --strict build/Mirinae.app
+          lipo -archs build/Mirinae.app/Contents/MacOS/Mirinae
+          build/Mirinae.app/Contents/MacOS/Mirinae --version
+
+      - name: Source tarball checksum for the Homebrew formula
+        env:
+          REPOSITORY: ${{ github.repository }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          curl -sL "https://github.com/${REPOSITORY}/archive/refs/tags/${TAG}.tar.gz" \
+            | shasum -a 256 | sed 's/-$/'"${TAG}"'.tar.gz/' >> build/SHA256SUMS
+          cat build/SHA256SUMS
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "${TAG}" build/Mirinae-*.zip build/SHA256SUMS \
+            --title "Mirinae ${TAG}" --generate-notes
