@@ -13,6 +13,15 @@ supported by Samsung Electronics Co., Ltd. Please refer to the
 was written against a pair of my Galaxy Buds 2 and the protocol notes the community has put
 together over the years, via reverse engineering and other means.
 
+| Menu bar panel (light) | Menu bar panel (dark) |
+| :---: | :---: |
+| ![The menu bar panel in light mode, showing battery, noise controls, and quick settings](docs/screenshots/panel-light.png) | ![The same panel in dark mode](docs/screenshots/panel-dark.png) |
+
+![The main window on the Overview page, with battery gauges, quick controls, and Now Playing](docs/screenshots/overview.png)
+
+More screenshots of every section (Sound, Touch, Earbuds, Find, Device, Sensors, Console,
+and Settings) are in the [`docs/screenshots`](docs/screenshots) folder.
+
 ## Installation
 
 You need macOS 14 or later, and your Galaxy Buds already paired with the Mac in System
