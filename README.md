@@ -34,6 +34,12 @@ brew install agriyakhetarpal/tap/mirinae          # builds on your Mac, no Gatek
 brew install --cask agriyakhetarpal/tap/mirinae   # prebuilt app, faster
 ```
 
+Homebrew 6 asks you to trust third-party taps before it loads anything from them. Installing
+with the full name as above trusts just Mirinae and nothing else. If you prefer to `brew tap
+agriyakhetarpal/tap` first and install by the short name, run
+`brew trust --cask agriyakhetarpal/tap/mirinae` (or `--formula`) once, or trust the whole tap
+with `brew trust agriyakhetarpal/tap`.
+
 Or download `Mirinae-<version>.zip` from the
 [releases page](https://github.com/agriyakhetarpal/mirinae/releases), unzip it, and drag
 Mirinae to your Applications folder.
