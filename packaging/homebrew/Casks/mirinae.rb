@@ -14,12 +14,12 @@ cask "mirinae" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "Mirinae.app"
 
-  uninstall quit:      "al.agriyakhetarp.mirinae",
-            launchctl: "al.agriyakhetarp.mirinae.watcher"
+  uninstall launchctl: "al.agriyakhetarp.mirinae.watcher",
+            quit:      "al.agriyakhetarp.mirinae"
 
   zap trash: [
     "~/Library/LaunchAgents/al.agriyakhetarp.mirinae.watcher.plist",
@@ -31,7 +31,7 @@ cask "mirinae" do
     <<~EOS
       Mirinae is not notarised. On first launch macOS will say it could not verify the app.
       Open System Settings > Privacy & Security, scroll down, and click "Open Anyway".
-      To skip that step, install with: brew install --cask --no-quarantine mirinae
+      To skip that step, install with: brew install --cask --no-quarantine agriyakhetarpal/tap/mirinae
     EOS
   end
 end
