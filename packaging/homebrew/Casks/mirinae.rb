@@ -6,7 +6,7 @@ cask "mirinae" do
 
   url "https://github.com/agriyakhetarpal/mirinae/releases/download/v#{version}/Mirinae-#{version}.zip"
   name "Mirinae"
-  desc "Galaxy Buds controls, diagnostics, and a menu bar panel for macOS"
+  desc "Galaxy Buds controls, diagnostics, and a menu bar panel"
   homepage "https://github.com/agriyakhetarpal/mirinae"
 
   livecheck do

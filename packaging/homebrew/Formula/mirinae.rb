@@ -1,7 +1,7 @@
 # Builds Mirinae from source on the user's Mac. Locally built apps carry no quarantine flag,
 # so there is no Gatekeeper prompt. Needs only the Command Line Tools Homebrew already requires.
 class Mirinae < Formula
-  desc "Galaxy Buds controls, diagnostics, and a menu bar panel for macOS"
+  desc "Galaxy Buds controls, diagnostics, and a menu bar panel"
   homepage "https://github.com/agriyakhetarpal/mirinae"
   url "https://github.com/agriyakhetarpal/mirinae/archive/refs/tags/v0.1.1.tar.gz"
   sha256 "REPLACE_WITH_SHA256_OF_THE_TARBALL"
