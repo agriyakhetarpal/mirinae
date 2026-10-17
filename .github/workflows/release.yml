@@ -16,6 +16,8 @@ jobs:
     runs-on: macos-15
     permissions:
       contents: write # creates the GitHub release and uploads its assets
+      id-token: write # the OIDC token Sigstore signs the provenance attestation with
+      attestations: write # stores the attestation on the repository for gh attestation verify
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -34,6 +36,19 @@ jobs:
           lipo -archs build/Mirinae.app/Contents/MacOS/Mirinae
           build/Mirinae.app/Contents/MacOS/Mirinae --version
 
+      - name: Sign the zip with Sigstore and record its build provenance
+        id: attest
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4.2.2
+        with:
+          subject-path: build/Mirinae-*.zip
+
+      - name: Keep the attestation bundle next to the zip for offline verification
+        env:
+          BUNDLE: ${{ steps.attest.outputs.bundle-path }}
+        run: |
+          for zip in build/Mirinae-*.zip; do cp "${BUNDLE}" "${zip}.sigstore.json"; done
+          ls -l build/*.sigstore.json
+
       - name: Source tarball checksum for the Homebrew formula
         env:
           REPOSITORY: ${{ github.repository }}
@@ -48,5 +63,5 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ github.ref_name }}
         run: |
-          gh release create "${TAG}" build/Mirinae-*.zip build/SHA256SUMS \
+          gh release create "${TAG}" build/Mirinae-*.zip build/Mirinae-*.zip.sigstore.json build/SHA256SUMS \
             --title "Mirinae ${TAG}" --generate-notes

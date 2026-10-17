@@ -22,3 +22,12 @@ Mirinae is a small app and most of its surface is easy to describe. The details 
 - Runs a command you typed yourself, as your user, when you use the custom touch-and-hold
   action. The app never runs and cannot run arbitrary commands on its own or anything that
   it did not receive from you via explicit user action.
+
+## Release integrity
+
+Release zips are built on GitHub Actions from the tagged commit, and each one carries a
+Sigstore provenance attestation. You can verify a download with
+`gh attestation verify Mirinae-<version>.zip --repo agriyakhetarpal/mirinae`, or offline with
+cosign and the `.sigstore.json` bundle on the release page. The steps are in
+[`docs/publishing.md`](docs/publishing.md). The app itself is ad hoc signed, not notarised,
+so macOS asks for confirmation on first launch.

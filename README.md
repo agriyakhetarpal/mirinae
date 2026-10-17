@@ -38,6 +38,17 @@ Or download `Mirinae-<version>.zip` from the
 [releases page](https://github.com/agriyakhetarpal/mirinae/releases), unzip it, and drag
 Mirinae to your Applications folder.
 
+Every release zip is built by GitHub Actions from the tagged commit and comes with a
+[Sigstore attestation](https://docs.github.com/en/actions/concepts/security/artifact-attestations).
+This is useful if you wish to check that your download is the one produced by the GitHub Actions
+workflow in this repository and has not been tampered with.
+
+To verify, run:
+
+```sh
+gh attestation verify Mirinae-<version>.zip --repo agriyakhetarpal/mirinae
+```
+
 Note that the prebuilt app is not notarised, because that needs a paid Apple developer
 account. The first time you open a downloaded copy, macOS will say it cannot verify the
 developer. Open System Settings → Privacy & Security, scroll down, and press "Open Anyway".
