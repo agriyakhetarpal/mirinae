@@ -30,7 +30,7 @@ Settings.
 With [Homebrew](https://brew.sh), either of these works:
 
 ```sh
-brew install agriyakhetarpal/tap/mirinae          # builds on your Mac, no Gatekeeper prompt
+brew install --formula agriyakhetarpal/tap/mirinae  # builds on your Mac, no Gatekeeper prompt
 brew install --cask agriyakhetarpal/tap/mirinae   # prebuilt app, faster
 ```
 

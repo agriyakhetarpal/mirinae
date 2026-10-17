@@ -72,12 +72,22 @@ Formula/mirinae.rb    from packaging/homebrew/Formula/mirinae.rb
 Casks/mirinae.rb      from packaging/homebrew/Casks/mirinae.rb
 ```
 
-Update the version and both SHA-256 values, commit, push. Users then run:
+The tap has `Scripts/bump.sh <version>`, which reads the release's `SHA256SUMS` and rewrites
+the version and both checksums. Run it after the release workflow finishes, check the diff,
+commit, push. Every release needs this step, since the cask pins the zip's hash and the formula
+pins the tarball's. Users then run:
 
 ```sh
-brew install agriyakhetarpal/tap/mirinae            # builds from source, no prompt
+brew install --formula agriyakhetarpal/tap/mirinae  # builds from source, no prompt
 brew install --cask agriyakhetarpal/tap/mirinae     # prebuilt, one "Open Anyway"
 ```
+
+Since Homebrew 6.0.0 and later, a non-official tap is untrusted until the user says otherwise.
+The fully qualified forms above trust only that one formula or cask, so they work on their own.
+After a plain `brew tap`, short names fail with "Refusing to load ... from untrusted tap"
+until `brew trust --cask agriyakhetarpal/tap/mirinae`, `brew trust --formula ...`, or
+`brew trust agriyakhetarpal/tap` has been run. `brew doctor` also warns about untrusted taps,
+so expect questions about that from users who tapped first.
 
 A personal tap has no popularity requirement. Homebrew's official repositories want 75
 stars (225 if you submit your own project), so that is a later step.

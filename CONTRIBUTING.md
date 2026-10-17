@@ -24,6 +24,9 @@ open build/Mirinae.app
 Scripts/build-app.sh --install  # same, except that it also copies the bundle to /Applications
 ```
 
+`SWIFT_BUILD_FLAGS` is appended to every `swift build` call. The Homebrew formula sets it to
+`--disable-sandbox`, because SwiftPM's own sandbox cannot nest inside Homebrew's build sandbox.
+
 Use `--install` if you plan to turn on either launch option in Settings. Login items point
 at the app's location on disk. The `build/` folder is replaced on every build.
 

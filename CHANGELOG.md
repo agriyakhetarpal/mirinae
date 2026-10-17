@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.1
+
+- `--version` is answered before AppKit starts, so it works without a window server. Homebrew's
+  sandboxed `brew test` relies on this
+- `Scripts/build-app.sh` passes `SWIFT_BUILD_FLAGS` to every `swift build` call. The Homebrew
+  formula uses it for `--disable-sandbox`
+
 ## 0.1.0
 
 Welcome to the first release of Mirinae! This release includes support for various Galaxy Buds,

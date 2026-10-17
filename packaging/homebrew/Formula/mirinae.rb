@@ -3,7 +3,7 @@
 class Mirinae < Formula
   desc "Galaxy Buds controls, diagnostics, and a menu bar panel for macOS"
   homepage "https://github.com/agriyakhetarpal/mirinae"
-  url "https://github.com/agriyakhetarpal/mirinae/archive/refs/tags/v0.1.0.tar.gz"
+  url "https://github.com/agriyakhetarpal/mirinae/archive/refs/tags/v0.1.1.tar.gz"
   sha256 "REPLACE_WITH_SHA256_OF_THE_TARBALL"
   license "Apache-2.0"
   head "https://github.com/agriyakhetarpal/mirinae.git", branch: "main"
@@ -11,6 +11,8 @@ class Mirinae < Formula
   depends_on macos: :sonoma
 
   def install
+    # SwiftPM sandboxes manifest compilation, and that cannot nest inside Homebrew's sandbox
+    ENV["SWIFT_BUILD_FLAGS"] = "--disable-sandbox"
     system "Scripts/build-app.sh", "release"
     prefix.install "build/Mirinae.app"
     bin.write_exec_script prefix/"Mirinae.app/Contents/MacOS/Mirinae"

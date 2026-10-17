@@ -3,6 +3,7 @@
 # Usage: Scripts/build-app.sh [debug|release] [--install] [--universal]
 #   --install    copies the finished bundle to /Applications (needed for a stable login item)
 #   --universal  builds arm64 and x86_64 slices (release packaging)
+# SWIFT_BUILD_FLAGS adds flags to every swift build call, such as --disable-sandbox for Homebrew.
 set -eu
 
 cd "$(dirname "$0")/.."
@@ -26,11 +27,11 @@ if [ "$universal" -eq 1 ]; then
 fi
 
 # shellcheck disable=SC2086
-swift build -c "$config" $arch_flags --product Mirinae
+swift build -c "$config" $arch_flags ${SWIFT_BUILD_FLAGS:-} --product Mirinae
 # shellcheck disable=SC2086
-swift build -c "$config" $arch_flags --product MirinaeWatcher
+swift build -c "$config" $arch_flags ${SWIFT_BUILD_FLAGS:-} --product MirinaeWatcher
 # shellcheck disable=SC2086
-bin="$(swift build -c "$config" $bin_path_flags --show-bin-path)"
+bin="$(swift build -c "$config" $bin_path_flags ${SWIFT_BUILD_FLAGS:-} --show-bin-path)"
 
 app="build/Mirinae.app"
 rm -rf "$app"

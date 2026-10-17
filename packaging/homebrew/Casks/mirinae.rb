@@ -1,7 +1,7 @@
 # Installs the prebuilt release. The binary is ad hoc signed, not notarised, so macOS asks
 # for confirmation on first launch unless the user installs with --no-quarantine.
 cask "mirinae" do
-  version "0.1.0"
+  version "0.1.1"
   sha256 "REPLACE_WITH_SHA256_FROM_SCRIPTS_PACKAGE_SH"
 
   url "https://github.com/agriyakhetarpal/mirinae/releases/download/v#{version}/Mirinae-#{version}.zip"

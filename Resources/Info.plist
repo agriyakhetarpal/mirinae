@@ -19,7 +19,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.1.0</string>
+	<string>0.1.1</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSApplicationCategoryType</key>
@@ -30,10 +30,10 @@
 	<string>Mirinae reads what Music or Spotify is playing so it can show it next to your earbuds.</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>Mirinae talks to your Galaxy Buds over Bluetooth to read their battery and change their settings.</string>
-	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2026 Agriya Khetarpal. Apache License 2.0. Not affiliated with Samsung Electronics Co., Ltd.</string>
 	<key>NSHighResolutionCapable</key>
 	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2026 Agriya Khetarpal. Apache License 2.0. Not affiliated with Samsung Electronics Co., Ltd.</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>NSSupportsAutomaticTermination</key>

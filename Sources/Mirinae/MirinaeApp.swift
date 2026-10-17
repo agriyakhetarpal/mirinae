@@ -3,7 +3,6 @@ import SwiftUI
 import AppKit
 import ServiceManagement
 
-@main
 struct MirinaeApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     @StateObject private var controller = BudsController.shared
@@ -50,14 +49,6 @@ struct MirinaeApp: App {
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private var statusItem: StatusItemController?
-
-    func applicationWillFinishLaunching(_ notification: Notification) {
-        if CommandLine.arguments.contains("--version") {
-            let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "dev"
-            print("Mirinae \(version)")
-            exit(0)
-        }
-    }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         Preferences.registerDefaults()
