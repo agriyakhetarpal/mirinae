@@ -32,9 +32,9 @@ struct SettingsView: View {
                 Toggle("Hide the Dock icon (menu bar only)", isOn: $hideDockIcon)
                     .onChange(of: hideDockIcon) { AppDelegate.applyActivationPolicy() }
                 Toggle("Launch at login", isOn: $ui.launchAtLogin)
-                    .onChange(of: ui.launchAtLogin) { toggleLoginItem($0) }
+                    .onChange(of: ui.launchAtLogin) { _, enabled in toggleLoginItem(enabled) }
                 Toggle("Launch when the earbuds connect", isOn: $ui.launchOnConnect)
-                    .onChange(of: ui.launchOnConnect) { toggleWatcher($0) }
+                    .onChange(of: ui.launchOnConnect) { _, enabled in toggleWatcher(enabled) }
                 if let error = ui.loginError { Text(error).font(.caption).foregroundStyle(.red) }
             } header: {
                 Text("General")
